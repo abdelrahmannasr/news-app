@@ -16,8 +16,12 @@ const TopNavigation = ({ index, setIndex }) => {
           </Text>
         </TouchableOpacity>
       ) : (
-        <TouchableOpacity>
+        <TouchableOpacity
+          style={styles.left}
+          onPress={() => setIndex(index === 0 ? 1 : 0)}
+        >
           <SimpleLineIcons name="arrow-left" size={15} color="#007fff" />
+          <Text style={{ ...styles.text, color: "lightgrey" }}>Discover</Text>
         </TouchableOpacity>
       )}
     </View>
