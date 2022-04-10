@@ -1,13 +1,41 @@
-import React, { useContext } from "react";
-import { View, Text } from "react-native";
+import React, { useContext, useState } from "react";
+import { View, Text, Dimensions, StyleSheet } from "react-native";
 import { NewsContext } from "../api/Context";
-import { Carousel } from "react-native-snap-carousel";
+import Carousel from "react-native-snap-carousel";
+import NewsItem from "../components/NewsItem";
 
 const NewsScreen = () => {
   const {
     news: { articles }
   } = useContext(NewsContext);
-  return <View>{articles && <Carousel />}</View>;
+  const windowHeight = Dimensions.get("window").height;
+  const [activeIndex, setActiveIndex] = useState();
+
+  return (
+    <View style={styles.carousel}>
+      {articles && (
+        <Carousel
+          layout={"stack"}
+          data={articles.slice(0, 10)}
+          sliderHeight={300}
+          itemHeight={windowHeight}
+          vertical={true}
+          renderItem={({ item, index }) => (
+            <NewsItem item={item} index={index} />
+          )}
+          onSnapToItem={index => setActiveIndex(index)}
+        />
+      )}
+    </View>
+  );
 };
+
+const styles = StyleSheet.create({
+  carousel: {
+    flex: 1,
+    transform: [{ scaleY: -1 }],
+    backgroundColor: "black"
+  }
+});
 
 export default NewsScreen;
