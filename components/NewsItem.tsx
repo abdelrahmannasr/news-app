@@ -1,5 +1,14 @@
 import React from "react";
-import { View, Text, StyleSheet, Dimensions, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+  Linking
+} from "react-native";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -13,6 +22,24 @@ const NewsItem = ({ item, index }) => {
         <Text style={{ ...styles.details, color: "white" }}>
           {item.description}
         </Text>
+        <Text style={{ color: "white" }}>
+          Written by: {item.author ? item.author : "unknown"}
+        </Text>
+        <ImageBackground
+          blurRadius={30}
+          style={styles.imageBackground}
+          source={{ uri: item.urlToImage }}
+        >
+          <TouchableOpacity onPress={() => Linking.openURL(item.url)}>
+            {item.content ? (
+              <Text style={{ fontSize: 15, color: "white" }}>
+                `${item.content.slice(0, 45)}...`
+              </Text>
+            ) : (
+              <Text></Text>
+            )}
+          </TouchableOpacity>
+        </ImageBackground>
       </View>
     </View>
   );
@@ -41,6 +68,15 @@ const styles = StyleSheet.create({
   details: {
     fontSize: 18,
     paddingBottom: 10
+  },
+  imageBackground: {
+    height: 80,
+    width: windowWidth,
+    position: "absolute",
+    bottom: 0,
+    backgroundColor: "#d7be69",
+    justifyContent: "center",
+    paddingHorizontal: 20
   }
 });
 
