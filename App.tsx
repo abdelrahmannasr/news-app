@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, StatusBar } from "react-native";
 import NewsTabs from "./components/NewsTabs";
+import Context from "./api/Context";
 
 const App = () => {
   return (
@@ -16,4 +17,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default App;
+const ContextApp = () => {
+  return (
+    <Context>
+      <App />
+    </Context>
+  );
+};
+
+export default ContextApp;
