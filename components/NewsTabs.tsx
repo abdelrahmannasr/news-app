@@ -5,6 +5,7 @@ import DiscoverScreen from "../screens/DiscoverScreen";
 import NewsScreen from "../screens/NewsScreen";
 import TopNavigation from "./TopNavigation";
 import { NewsContext } from "../api/Context";
+import SettingScreen from "../screens/SettingScreen";
 
 const NewsTabs = () => {
   const layout = useWindowDimensions();
@@ -12,12 +13,14 @@ const NewsTabs = () => {
 
   const [routes] = useState([
     { key: "first", title: "Discover" },
-    { key: "second", title: "News" }
+    { key: "second", title: "News" },
+    { key: "third", title: "Settings" }
   ]);
 
   const renderScene = SceneMap({
     first: DiscoverScreen,
-    second: NewsScreen
+    second: NewsScreen,
+    third: SettingScreen
   });
 
   return (
