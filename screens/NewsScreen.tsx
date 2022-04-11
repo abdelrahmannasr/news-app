@@ -1,15 +1,24 @@
 import React, { useContext, useState } from "react";
-import { View, Text, Dimensions, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Dimensions,
+  StyleSheet,
+  FlatList,
+  RefreshControl
+} from "react-native";
 import { NewsContext } from "../api/Context";
 import Carousel from "react-native-snap-carousel";
 import NewsItem from "../components/NewsItem";
 
 const NewsScreen = () => {
   const {
-    news: { articles }
+    news: { articles },
+    fetchNews
   } = useContext(NewsContext);
   const windowHeight = Dimensions.get("window").height;
   const [activeIndex, setActiveIndex] = useState();
+  const [refreshing, setRefreshing] = useState(false);
 
   return (
     <View style={styles.carousel}>
@@ -24,6 +33,18 @@ const NewsScreen = () => {
             <NewsItem item={item} index={index} />
           )}
           onSnapToItem={index => setActiveIndex(index)}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={() => {
+                setRefreshing(true);
+                fetchNews();
+                setTimeout(() => {
+                  setRefreshing(false);
+                }, 2000);
+              }}
+            />
+          }
         />
       )}
     </View>

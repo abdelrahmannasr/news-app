@@ -16,8 +16,8 @@ const Context = ({ children }) => {
   const [index, setIndex] = useState(1);
   const [source, setSource] = useState();
 
-  const fetchNews = async () => {
-    const { data } = await axios.get(getNewsAPI(category));
+  const fetchNews = async (cat = category) => {
+    const { data } = await axios.get(getNewsAPI(cat));
     setNews(data);
     setIndex(1);
   };
@@ -42,7 +42,16 @@ const Context = ({ children }) => {
 
   return (
     <NewsContext.Provider
-      value={{ news, index, setIndex, fetchNews, setCategory, setSource }}
+      value={{
+        news,
+        index,
+        setIndex,
+        fetchNews,
+        category,
+        setCategory,
+        source,
+        setSource
+      }}
     >
       {children}
     </NewsContext.Provider>
