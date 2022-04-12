@@ -10,6 +10,7 @@ import {
   Linking
 } from "react-native";
 import { NewsContext } from "../api/Context";
+import i18n from "i18n-js";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -34,7 +35,8 @@ const NewsItem = ({ item, index = 0 }) => {
           {item.description}
         </Text>
         <Text style={{ color: darkTheme ? "white" : "black" }}>
-          Written by: {item.author ? item.author : "unknown"}
+          {i18n.translate("WrittenBy")}
+          {item.author ? item.author : "unknown"}
         </Text>
         <ImageBackground
           blurRadius={30}

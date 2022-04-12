@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons, SimpleLineIcons } from "@expo/vector-icons";
 import { NewsContext } from "../api/Context";
+import i18n from "i18n-js";
 
 const TopNavigation = ({ index, setIndex }) => {
   const { fetchNews, darkTheme, setDarkTheme } = useContext(NewsContext);
@@ -35,7 +36,7 @@ const TopNavigation = ({ index, setIndex }) => {
           <Text
             style={{ ...styles.text, color: darkTheme ? "lightgrey" : "black" }}
           >
-            Discover
+            {i18n.t("Discover")}
           </Text>
         </TouchableOpacity>
       ) : (
@@ -47,7 +48,7 @@ const TopNavigation = ({ index, setIndex }) => {
           <Text
             style={{ ...styles.text, color: darkTheme ? "lightgrey" : "black" }}
           >
-            All News
+            {i18n.t("AllNews")}
           </Text>
         </TouchableOpacity>
       )}
@@ -55,7 +56,11 @@ const TopNavigation = ({ index, setIndex }) => {
         <Text
           style={{ ...styles.center, color: darkTheme ? "white" : "black" }}
         >
-          {index === 0 ? "Discover" : index === 1 ? "All News" : "Settings"}
+          {index === 0
+            ? i18n.translate("Discover")
+            : index === 1
+            ? i18n.translate("AllNews")
+            : i18n.translate("Settings")}
         </Text>
       </View>
       {index === 1 ? (
@@ -70,7 +75,7 @@ const TopNavigation = ({ index, setIndex }) => {
                 color: darkTheme ? "lightgrey" : "black"
               }}
             >
-              Settings
+              {i18n.translate("Settings")}
             </Text>
             <SimpleLineIcons name="arrow-right" size={15} color="#007fff" />
           </TouchableOpacity>
@@ -88,7 +93,7 @@ const TopNavigation = ({ index, setIndex }) => {
           <Text
             style={{ ...styles.text, color: darkTheme ? "white" : "black" }}
           >
-            All News
+            {i18n.translate("AllNews")}
           </Text>
           <SimpleLineIcons name="arrow-right" size={15} color="#007fff" />
         </TouchableOpacity>

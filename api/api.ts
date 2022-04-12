@@ -2,33 +2,33 @@ export const categories = [
   {
     code: "",
     pic: "https://img.icons8.com/fluent/96/000000/news.png",
-    name: "general"
+    name: "General"
   },
   {
     code: "",
     pic: "https://img.icons8.com/fluent/96/000000/hard-working.png",
-    name: "business"
+    name: "Business"
   },
   {
     code: "",
     pic: "https://img.icons8.com/fluent/96/000000/movie-projector.png",
-    name: "entertainment"
+    name: "Entertainment"
   },
   {
     pic: "https://img.icons8.com/fluent/96/000000/stethoscope.png",
-    name: "health"
+    name: "Health"
   },
   {
     pic: "https://img.icons8.com/fluent/96/000000/microscope.png",
-    name: "science"
+    name: "Science"
   },
   {
     pic: "https://img.icons8.com/fluent/96/000000/trophy.png",
-    name: "sports"
+    name: "Sports"
   },
   {
     pic: "https://img.icons8.com/fluent/96/000000/artificial-intelligence.png",
-    name: "technology"
+    name: "Technology"
   }
 ];
 

@@ -10,6 +10,7 @@ import {
 import { NewsContext } from "../api/Context";
 import { Entypo } from "@expo/vector-icons";
 import NewsItem from "./NewsItem";
+import i18n from "i18n-js";
 
 const Search = () => {
   const {
@@ -42,7 +43,7 @@ const Search = () => {
           color: darkTheme ? "white" : "black"
         }}
         onChangeText={text => search(text)}
-        placeholder="Search for news"
+        placeholder={i18n.translate("SearchForNews")}
         placeholderTextColor={darkTheme ? "white" : "black"}
       />
       <View style={styles.searchResults}>

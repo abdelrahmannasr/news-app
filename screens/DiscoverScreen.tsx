@@ -11,6 +11,7 @@ import { NewsContext } from "../api/Context";
 import { categories, sources } from "../api/api";
 import Carousel from "react-native-snap-carousel";
 import Search from "../components/Search";
+import i18n from "i18n-js";
 
 const DiscoverScreen = () => {
   const { setCategory, setSource, darkTheme } = useContext(NewsContext);
@@ -22,7 +23,7 @@ const DiscoverScreen = () => {
       <Text
         style={{ ...styles.subtitle, color: darkTheme ? "white" : "black" }}
       >
-        Categories
+        {i18n.translate("Categories")}
       </Text>
       <Carousel
         layout={"default"}
@@ -36,7 +37,7 @@ const DiscoverScreen = () => {
             <Text
               style={{ ...styles.name, color: darkTheme ? "white" : "black" }}
             >
-              {item.name}
+              {i18n.translate(item.name)}
             </Text>
           </TouchableOpacity>
         )}
@@ -49,7 +50,7 @@ const DiscoverScreen = () => {
       <Text
         style={{ ...styles.subtitle, color: darkTheme ? "white" : "black" }}
       >
-        News Feed
+        {i18n.translate("NewsFeed")}
       </Text>
       <View style={styles.sources}>
         {sources.map(sourceItem => (
