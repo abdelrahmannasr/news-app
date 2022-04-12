@@ -4,9 +4,12 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Modal
 } from "react-native";
 import { NewsContext } from "../api/Context";
+import { Entypo } from "@expo/vector-icons";
+import NewsItem from "./NewsItem";
 
 const Search = () => {
   const {
@@ -24,6 +27,11 @@ const Search = () => {
     }
     setSearchResults(articles.filter(article => article.title.includes(text)));
   };
+
+  const openModal = newsItem => {
+    setModalVisible(true);
+    setCurrentNews(newsItem);
+  };
   return (
     <View style={{ width: "100%", position: "relative" }}>
       <TextInput
@@ -38,7 +46,11 @@ const Search = () => {
       />
       <View style={styles.searchResults}>
         {searchResults.slice(0, 10).map(item => (
-          <TouchableOpacity key={item.title} activeOpacity={0.7}>
+          <TouchableOpacity
+            key={item.title}
+            activeOpacity={0.7}
+            onPress={() => openModal(item)}
+          >
             <Text
               style={{
                 ...styles.searchItem,
@@ -51,6 +63,22 @@ const Search = () => {
           </TouchableOpacity>
         ))}
       </View>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(!modalVisible)}
+      >
+        <TouchableOpacity
+          style={styles.closeButton}
+          onPress={() => setModalVisible(!modalVisible)}
+        >
+          <Entypo name="circle-with-cross" size={30} color="white" />
+        </TouchableOpacity>
+        <View style={styles.modalContainer}>
+          <NewsItem item={currentNews} />
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -74,6 +102,16 @@ const styles = StyleSheet.create({
     margin: 0.5,
     shadowColor: "black",
     elevation: 5
+  },
+  closeButton: {
+    position: "absolute",
+    zIndex: 1,
+    right: 0,
+    margin: 20
+  },
+  modalContainer: {
+    height: "100%",
+    transform: [{ scaleY: -1 }]
   }
 });
 

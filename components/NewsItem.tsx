@@ -13,7 +13,7 @@ import {
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const NewsItem = ({ item, index }) => {
+const NewsItem = ({ item, index = 0 }) => {
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={{ uri: item.urlToImage }} />

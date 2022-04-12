@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { View, Text, useWindowDimensions } from "react-native";
+import { useWindowDimensions } from "react-native";
 import { SceneMap, TabView } from "react-native-tab-view";
 import DiscoverScreen from "../screens/DiscoverScreen";
 import NewsScreen from "../screens/NewsScreen";
