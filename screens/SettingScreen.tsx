@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text } from "react-native";
+import { NewsContext } from "../api/Context";
 
 const SettingScreen = () => {
+  const { darkTheme } = useContext(NewsContext);
   return (
     <View>
-      <Text style={{ color: "white", fontSize: 15 }}>
+      <Text
+        style={{
+          color: darkTheme ? "white" : "black",
+          paddingVertical: 10,
+          paddingHorizontal: 15,
+          fontSize: 15
+        }}
+      >
         Change Language Should be here
       </Text>
     </View>

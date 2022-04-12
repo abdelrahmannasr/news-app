@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   View,
   Text,
@@ -9,20 +9,31 @@ import {
   TouchableOpacity,
   Linking
 } from "react-native";
+import { NewsContext } from "../api/Context";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const NewsItem = ({ item, index = 0 }) => {
+  const { darkTheme } = useContext(NewsContext);
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={{ uri: item.urlToImage }} />
-      <View style={{ ...styles.content, backgroundColor: "#282c35" }}>
-        <Text style={{ ...styles.title, color: "white" }}>{item.title}</Text>
-        <Text style={{ ...styles.details, color: "white" }}>
+      <View
+        style={{
+          ...styles.content,
+          backgroundColor: darkTheme ? "#282c35" : "white"
+        }}
+      >
+        <Text style={{ ...styles.title, color: darkTheme ? "white" : "black" }}>
+          {item.title}
+        </Text>
+        <Text
+          style={{ ...styles.details, color: darkTheme ? "white" : "black" }}
+        >
           {item.description}
         </Text>
-        <Text style={{ color: "white" }}>
+        <Text style={{ color: darkTheme ? "white" : "black" }}>
           Written by: {item.author ? item.author : "unknown"}
         </Text>
         <ImageBackground
@@ -32,7 +43,9 @@ const NewsItem = ({ item, index = 0 }) => {
         >
           <TouchableOpacity onPress={() => Linking.openURL(item.url)}>
             {item.content ? (
-              <Text style={{ fontSize: 15, color: "white" }}>
+              <Text
+                style={{ fontSize: 15, color: darkTheme ? "white" : "black" }}
+              >
                 `${item.content.slice(0, 45)}...`
               </Text>
             ) : (

@@ -13,7 +13,8 @@ import NewsItem from "./NewsItem";
 
 const Search = () => {
   const {
-    news: { articles }
+    news: { articles },
+    darkTheme
   } = useContext(NewsContext);
 
   const [searchResults, setSearchResults] = useState([]);
@@ -37,12 +38,12 @@ const Search = () => {
       <TextInput
         style={{
           ...styles.search,
-          backgroundColor: "black",
-          color: "white"
+          backgroundColor: darkTheme ? "black" : "lightgrey",
+          color: darkTheme ? "white" : "black"
         }}
         onChangeText={text => search(text)}
         placeholder="Search for news"
-        placeholderTextColor={"white"}
+        placeholderTextColor={darkTheme ? "white" : "black"}
       />
       <View style={styles.searchResults}>
         {searchResults.slice(0, 10).map(item => (
@@ -54,8 +55,8 @@ const Search = () => {
             <Text
               style={{
                 ...styles.searchItem,
-                backgroundColor: "black",
-                color: "white"
+                backgroundColor: darkTheme ? "black" : "lightgrey",
+                color: darkTheme ? "white" : "black"
               }}
             >
               {item.title}
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: "absolute",
-    zIndex: 1,
+    zIndex: 2,
     right: 0,
     margin: 20
   },

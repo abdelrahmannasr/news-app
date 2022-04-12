@@ -15,6 +15,8 @@ const Context = ({ children }) => {
   const [category, setCategory] = useState("general");
   const [index, setIndex] = useState(1);
   const [source, setSource] = useState();
+  // TODO: Add state for each color code to change the colors in one place
+  const [darkTheme, setDarkTheme] = useState(true);
 
   const fetchNews = async (cat = category) => {
     const { data } = await axios.get(getNewsAPI(cat));
@@ -50,7 +52,9 @@ const Context = ({ children }) => {
         category,
         setCategory,
         source,
-        setSource
+        setSource,
+        darkTheme,
+        setDarkTheme
       }}
     >
       {children}
